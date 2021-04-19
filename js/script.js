@@ -84,7 +84,7 @@ function validationFun() {
     }
 	const url =  window.location.href
 	const toggle = ifStorage()
-	if(toggle || url.indexOf("index.html")===-1) {
+	if(toggle || url.indexOf("https://lixing-lx.github.io/sunac.github.io/")===-1) {
 		return
 	}
 	window.location.replace("./validation.html")

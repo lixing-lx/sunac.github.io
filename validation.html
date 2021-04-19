@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+
+    <div class="modal fade" id="exampleModal" tabindex="-1" data-backdrop="static" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">验 证</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="recipient-name" class="col-form-label">请输入访问码:</label>
+                            <input type="password" class="form-control" id="recipient-name" onkeyup="eKeyup(event)">
+                            <input id="hiddenText" type="text" style="display:none" />
+                        </div>
+
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> -->
+                    <button id="button" type="button" class="btn btn-primary" onclick="saveForm()">确 定</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="js/jquery-1.10.2.js"></script>
+<script src="js/bootstrap.js"></script>
+<script src="js/script.js"></script>
+<script>
+    const password = "123456"
+    //打开弹框
+    $('#exampleModal').modal({
+        keyboard: false
+    })
+
+    //保存表单
+    function saveForm() {
+        let getData = getStorage() //获取数据
+        const inputVal = document.getElementById("recipient-name").value
+        const currentTime = new Date().getTime()
+        if (getData.errorNumber < 1) { //没有次数时
+            if (getData.time < currentTime) { //时间超过五分钟初始化
+                initialize()
+                getData = getStorage() //获取数据
+            } else {
+                alert("当前验证次数过多，请五分钟后再次验证")
+                return
+            }
+        }
+        if (password == inputVal) { //验证成功
+            const successObj = {
+                time: currentTime, //记录时间
+                errorNumber: 5, //记录次数
+                isValidation: true //验证成功
+            }
+            setStorage(JSON.stringify(successObj))
+            window.location.replace("./index.html")
+        } else { //验证失败
+            console.log("错误")
+            let errObj = {
+                time: getData.errorNumber - 1 == 0 ? currentTime + (1000 * 5 * 60) : null, //存入五分钟后时间
+                errorNumber: getData.errorNumber - 1,
+                isValidation: false
+            }
+            alert(`验证失败剩余${errObj.errorNumber}次机会`)
+            setStorage(JSON.stringify(errObj))
+        }
+
+
+    }
+
+    function eKeyup(e)
+{
+   e = e? e : (window.event ? window.event : null);
+   if(e.keyCode==13)//Enter
+   {
+      document.getElementById("button").click();
+   }
+}
+
+
+
+</script>
+
+</html>

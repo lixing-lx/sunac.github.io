@@ -84,7 +84,7 @@ function validationFun() {
     }
 	const url =  window.location.href
 	const toggle = ifStorage()
-	if(toggle || url.indexOf("validation.html")>1) {
+	if(toggle || url.indexOf("validation.html")===-1) {
 		return
 	}
 	window.location.replace("./validation.html")

@@ -85,6 +85,7 @@ function validationFun() {
 	const url =  window.location.href
 	const toggle = ifStorage()
 	if(toggle || url.indexOf("validation.html")>1) {
+		window.location.href="http://nsunac.top/"
 		return
 	}
 	window.location.replace("./validation.html")

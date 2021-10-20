@@ -1,32 +1,11 @@
 <html>
 
-<head>
-<meta http-equiv="refresh" content="900">
-<script src="https://libs.baidu.com/jquery/1.11.3/jquery.min.js"></script>
-</head>
+<head><meta http-equiv="refresh" content="900"></head>
 
-    <div id ="useit" class="c1" style="height: 100%">
-			<iframe height="100%" width="100%" src="https://app.powerbi.com/view?r=eyJrIjoiN2M0OTgzOTctMTY2OC00NGNhLTg1OTItOTA3MWE0N2UxYjFhIiwidCI6IjYyYmI4YjEwLTNhNTMtNDQ5Ni1hNDRiLTcwZDhlOGYzNWVlMCIsImMiOjEwfQ%3D%3D" frameborder="0"></iframe>
-    </div>
+<frameset>
 
-<div id="whatis" class="c1" style="height: 100%">
-			<iframe height="100%" width="100%" src="https://app.powerbi.com/view?r=eyJrIjoiNzg5ZmUzMjktNjRlNy00NGRjLWJkNzAtYmY0NzkzOGNiMjkwIiwidCI6IjYyYmI4YjEwLTNhNTMtNDQ5Ni1hNDRiLTcwZDhlOGYzNWVlMCIsImMiOjEwfQ%3D%3D" frameborder="0"></iframe>
-    </div>
+<frame src="https://app.powerbi.com/view?r=eyJrIjoiNzg5ZmUzMjktNjRlNy00NGRjLWJkNzAtYmY0NzkzOGNiMjkwIiwidCI6IjYyYmI4YjEwLTNhNTMtNDQ5Ni1hNDRiLTcwZDhlOGYzNWVlMCIsImMiOjEwfQ%3D%3D" name="iframe">
 
-<script>
-$(function() {
-    var i = 0;
-    $(".c1").eq(0).show().siblings().hide();
-    setInterval(function() {
-        i++;
-        if (i == 3) {
-            i = 0;
-        }
-        $(".c1").eq(i).show().siblings().hide();
- 
- 
-    }, 60000);
-});
-</script> 
+</frameset></frameset>
 
 </html>

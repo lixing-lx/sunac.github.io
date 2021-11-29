@@ -30,7 +30,11 @@ $(function() {
         $(".c1").eq(i).show().siblings().hide();
 
 
-    }, 60000);
+    }, if(i == 2) {
+	60000;
+}else {
+	5000;
+});
 });
 </script>
 

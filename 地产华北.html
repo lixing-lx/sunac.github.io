@@ -16,23 +16,29 @@
 <script>
 
 var video=document.querySelector("video");
+var a=60;
+var b=100;
+<!--console.log(c)-->
 $(function() {
     var i = 0;
     $(".c1").eq(0).show().siblings().hide();
     setInterval(function() {
         i++;
-        var l = Math.ceil(video.duration/60) + 2;
-<!--        console.log(video.duration);-->
-<!--        console.log(l);-->
-        if (i >= l) {
+        var c=video.duration;
+
+        if (i > a+b+c ) {
             i = 0;
-        }
-        $(".c1").eq(i).show().siblings().hide();
-        if (i == 2) {
+        }else if (i >= 0 && i <=a){
+            $(".c1").eq(0).show().siblings().hide();
+        }else if (i > a && i <=a+b){
+            $(".c1").eq(1).show().siblings().hide();
+        }else if (i >= a+b+1 && i <= a+b+1){
             video.currentTime=0;
+        }else if (i >= a+b+1) {
+            $(".c1").eq(2).show().siblings().hide();
         }
-    }, 60000);
+    }, 1000);
 });
-</script> 
+</script>
 
 </html>
